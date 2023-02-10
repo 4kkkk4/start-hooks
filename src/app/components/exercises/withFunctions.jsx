@@ -1,0 +1,21 @@
+import React from "react";
+import CardWrapper from "../common/Card";
+
+const withFunctions = (Component) => (props) => {
+    const isAuth = localStorage.getItem("auth", "token");
+    const onLogin = () => localStorage.setItem("auth", "token");
+    const onLogOut = () => localStorage.clear("auth", "token");
+
+    return (
+        <CardWrapper>
+            <Component
+                {...props}
+                isAuth={isAuth}
+                onLogin={onLogin}
+                onLogOut={onLogOut}
+            />
+        </CardWrapper>
+    );
+};
+
+export default withFunctions;
